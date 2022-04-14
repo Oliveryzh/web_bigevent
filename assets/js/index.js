@@ -3,8 +3,6 @@ $(function () {
     getUserInfo()
 
     var layer = layui.layer
-
-
     $('#btnLoginout').on('click', function () {
         // 提示用户是否确认退出登录
         layer.confirm('是否退出登录？', { icon: 3, title: '提示' }, function (index) {
@@ -24,15 +22,11 @@ function getUserInfo() {
     $.ajax({
         method: 'get',
         url: '/my/userinfo',
-        // headers 就是请求头配置对象
-        // headers: {
-        //     Authorization: localStorage.getItem('token') || ''
-        // },
         success: (res) => {
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败！')
             }
-            console.log(res)
+            // console.log(res)
             // 调用 renderAvatar 渲染用户头像
             renderAvatar(res.data)
         },
@@ -55,7 +49,7 @@ function renderAvatar(user) {
     if (user.user_pic !== null) {
         // 渲染图片头像
         $('.text-avatar').hide()
-        $('.layui-nav-img').attr('src', 'user.user_pic').show()
+        $('.layui-nav-img').attr('src', user.user_pic).show()
     } else {
         // 渲染文本头像
         $('.layui-nav-img').hide()

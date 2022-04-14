@@ -9,7 +9,6 @@ $.ajaxPrefilter((options) => {
             Authorization: localStorage.getItem('token') || ''
         }
     }
-
     // 全局统一挂载 complete 回调函数
     options.complete = (res) => {
         if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
