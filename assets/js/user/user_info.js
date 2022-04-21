@@ -30,7 +30,7 @@ $(function () {
         initUserInfo()
     })
     // 监听表单的提交事件
-    $('.layui-form').on('submit', (e) => {
+    $('.layui-form').on('submit', function(e) {
         e.preventDefault()
         $.ajax({
             method: 'post',
@@ -38,7 +38,7 @@ $(function () {
             // 序列化 可以快速获取表单数据
             // 为什么这里我用 $(this).serialize() 获取不到数据 
             // 然而老师视频里使用 $(this) 是可以获取数据的
-            data: $('.layui-form').serialize(),
+            data: $(this).serialize(),
             success: (res) => {
                 if (res.status !== 0 && res.message !== '修改用户信息成功！') {
                     return layer.msg('修改用户信息失败！')
